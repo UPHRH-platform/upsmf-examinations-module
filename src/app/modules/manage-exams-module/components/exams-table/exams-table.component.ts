@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SharedTableComponent } from '../../../shared/components/shared-table/shared-table.component';
+import {msgs} from "../../../../../locale/en";
 
 @Component({
   selector: 'app-exams-table',
@@ -9,4 +9,9 @@ import { SharedTableComponent } from '../../../shared/components/shared-table/sh
 })
 export class ExamsTableComponent {
 
+  msgs = msgs;
+
+ngOnInit() {
+  console.log(this.msgs.manageExamsText);
+}
 }
