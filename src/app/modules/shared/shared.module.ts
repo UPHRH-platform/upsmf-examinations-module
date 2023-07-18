@@ -3,10 +3,16 @@ import { CommonModule } from '@angular/common';
 
 //import { TableModule } from 'primeng/table';
 import { SharedTableComponent } from './components/shared-table/shared-table.component';
+
 import {MaterialModule} from '../../../material/material.module';
+
+import { HeaderComponent } from './components/header/header.component';
+
+
 @NgModule({
   declarations: [
-    SharedTableComponent
+    SharedTableComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +21,8 @@ import {MaterialModule} from '../../../material/material.module';
   ],
   exports :
   [
-    SharedTableComponent
+    SharedTableComponent,
+    HeaderComponent
   ]
 })
 export class SharedModule { }
