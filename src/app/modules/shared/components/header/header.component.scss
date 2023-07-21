@@ -1,18 +1,14 @@
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-img{
+.header-container{
     margin-left: 12rem;
-    width: 17rem;
+    margin-right: 12rem;
 }
+
 button{
-    
-    margin-left: 72rem;
     background-color: forestgreen;
     border-radius: 8px;
     border: none;
     color: white;
+    height: 26px;
+    margin-top: 1rem;
 
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ExamsTableComponent } from './components/exams-table/exams-table.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
+import { ExamCycleComponent } from './components/exam-cycle/exam-cycle.component';
 
 const routes: Routes = [
 
@@ -10,7 +11,7 @@ const routes: Routes = [
     path: 'manage-exams', component: ExamsTableComponent, pathMatch: 'full',
   },
   {
-    path: 'header', component: HeaderComponent, pathMatch: 'full',
+    path: 'exam-cycle', component: ExamCycleComponent, pathMatch: 'full',
   },
 ];
 
