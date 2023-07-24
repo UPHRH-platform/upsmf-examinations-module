@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 
-import {msgs} from "../../../../../locale/en";
-import {TableColumn} from '../../../shared/components/shared-table/shared-table.component';
+import { msgs } from "../../../../../locale/en";
+import { TableColumn } from '../../../shared/components/shared-table/shared-table.component';
 
 export interface Exams {
-  id: number;
+  examId: string;
   description: string;
-  amount: number;
-  price: number;
-  discount: number;
+  startDate: string;
+  endDate: string;
   isActive?: boolean;
 }
 @Component({
@@ -23,52 +22,52 @@ export class ExamsTableComponent {
   msgs = msgs;
 
   exams: Exams[];
-  examsTableColumns : TableColumn[];
+  examsTableColumns: TableColumn[];
 
   ngOnInit(): void {
     this.initializeColumns();
     console.log(this.examsTableColumns)
-     this.getExams();
+    this.getExams();
     console.log(this.exams)
   }
 
   initializeColumns(): void {
     this.examsTableColumns = [
       {
-        columnDef: 'id',
+        columnDef: 'examId',
         header: 'Exam Cycle',
-        isSortable:true,
-        cell: (element: Record<string, any>) => `${element['id']}`
+        isSortable: true,
+        cell: (element: Record<string, any>) => `${element['examId']}`
       },
       {
         columnDef: 'description',
         header: 'Course Name',
-        isSortable:true,
+        isSortable: true,
         cell: (element: Record<string, any>) => `${element['description']}`
       },
       {
-        columnDef: 'amount',
+        columnDef: 'startDate',
         header: 'Start Date',
-        isSortable:true,
-        cell: (element: Record<string, any>) => `${element['amount']}`
+        isSortable: true,
+        cell: (element: Record<string, any>) => `${element['startDate']}`
       },
       {
-        columnDef: 'price',
+        columnDef: 'endDate',
         header: 'End Date',
-        isSortable:true,
-        cell: (element: Record<string, any>) => `${element['price']}`
+        isSortable: true,
+        cell: (element: Record<string, any>) => `${element['endDate']}`
       },
       {
-        columnDef: 'discount',
+        columnDef: 'schedule',
         header: '',
-        isSortable:false,
+        isSortable: false,
         cell: (element: Record<string, any>) => `View Schedule`
       },
       {
         columnDef: 'isActive',
         header: '',
-        isSortable:false,
-        isAction:true,
+        isSortable: false,
+        isAction: true,
         cell: (element: Record<string, any>) => `${element['isActive']}`
       }
 
@@ -76,51 +75,98 @@ export class ExamsTableComponent {
   }
 
   getExams() {
-    this.exams =  [
+    this.exams = [
       {
-        id: 1,
-        description: 'first book',
-        amount: 100,
-        price: 120,
-        discount: 20,
+        examId: "M SC ( NURSING ) - SEMESTER 1",
+        description: 'M SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
         isActive: true
       },
       {
-        id: 2,
-        description: 'second book',
-        amount: 100,
-        price: 120,
-        discount: 20,
+        examId: "M SC ( NURSING ) - SEMESTER 1",
+        description: 'M SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
         isActive: true
       },
       {
-        id: 3,
-        description: 'third book',
-        amount: 100,
-        price: 120,
-        discount: 20,
+        examId: "M SC ( NURSING ) - SEMESTER 1",
+        description: 'M SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
         isActive: true
       },
       {
-        id: 4,
-        description: 'fourth book',
-        amount: 100,
-        price: 120,
-        discount: 20,
+        examId: "M SC ( NURSING ) - SEMESTER 2",
+        description: 'M SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
         isActive: true
       },
       {
-        id: 5,
-        description: 'fifth book',
-        amount: 100,
-        price: 120,
-        discount: 20,
+        examId: "M SC ( NURSING ) - SEMESTER 2",
+        description: 'M SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
+        isActive: true
+      }, {
+        examId: "M SC ( NURSING ) - SEMESTER 2",
+        description: 'M SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
+        isActive: true
+      },
+      {
+        examId: "B SC ( NURSING ) - SEMESTER 1",
+        description: 'B SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
+        isActive: true
+      },
+      {
+        examId: "B SC ( NURSING ) - SEMESTER 2",
+        description: 'B SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
+        isActive: true
+      },
+      {
+        examId: "B SC ( NURSING ) - SEMESTER 1",
+        description: 'B SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
+        isActive: true
+      },
+      {
+        examId: "B SC ( NURSING ) - SEMESTER 2",
+        description: 'B SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
+        isActive: true
+      },
+      {
+        examId: "B SC ( NURSING ) - SEMESTER 2",
+        description: 'B SC ( NURSING )',
+        startDate: "23-06-2023",
+        endDate: "23-12-2023",
+
         isActive: true
       }
     ];
   }
 
-  removeItem(e : Event){
+  removeItem(e: Event) {
     console.log(e)
   }
 }
