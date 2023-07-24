@@ -1,7 +1,9 @@
 <div style="margin: 105px;">
     <h2 class="mx-auto m3 p3" i18n>{{msgs.manageExamsText}}</h2>
 </div>
-
+<div class="fixed right-0 ">
+    <button mat-button color="primary" mat-raised-button (click)="openBulkUploadDialog()">Bulk Upload</button>
+  </div>
 
 <app-shared-table
     [tableColumns]="examsTableColumns"

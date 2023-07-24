@@ -7,13 +7,15 @@ import { SharedTableComponent } from './components/shared-table/shared-table.com
 import {MaterialModule} from '../../../material/material.module';
 
 import { HeaderComponent } from './components/header/header.component';
+import { SharedDialogOverlayComponent } from './components/shared-dialog-overlay/shared-dialog-overlay.component';
 
 
 
 @NgModule({
   declarations: [
     SharedTableComponent,
-    HeaderComponent
+    HeaderComponent,
+    SharedDialogOverlayComponent
   ],
   imports: [
     CommonModule,

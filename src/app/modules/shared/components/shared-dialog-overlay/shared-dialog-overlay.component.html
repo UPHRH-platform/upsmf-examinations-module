@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Bulk Upload Exam Cycles</h1>
+<div mat-dialog-content>
+  
+
+<app-shared-table
+    [tableColumns]="examsTableColumns"
+    [tableData]="exams"
+    [isPageable]="false"
+    > 
+
+</app-shared-table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add Exam Cycle</button>
+</div>
