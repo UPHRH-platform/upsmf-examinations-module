@@ -1,40 +1,7 @@
-<!-- 
-<p-table [columns]="cols" [value]="value"
-styleClass="p-datatable-striped"
- [tableStyle]="{'min-width': '60rem'}">
-    <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between">
-            
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{ col.header }}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-        <tr>
-            <td>{{product.name}}</td>
-            <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
-            <td>{{product.price | currency:'USD'}}</td>
-            <td>{{product.category}}</td>
-            <td>{{product.category}}</td>
-           <td> <button><i class="pi pi-times" style="font-size: 1.5rem"></i></button></td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-        <div class="flex align-items-center justify-content-between">
-            In total there are ... products.
-        </div>
-    </ng-template>
-</p-table> -->
-
 <div style="margin: 105px;">
 
     <mat-form-field>
-        <input matInput  appearance="standard" (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        <input matInput appearance="standard" (keyup)="applyFilter($event.target.value)" placeholder="Search">
     </mat-form-field>
     <span>
         <mat-icon class="" fontIcon="filter_list_alt"></mat-icon>
@@ -42,23 +9,35 @@ styleClass="p-datatable-striped"
     </span>
 
     <table class="m4" mat-table [dataSource]="dataSource" class="mat-elevation-z1" matSort
-        sortActionDescription="Sort by number" (matSortChange)="announceSortChange($event)">
+        sortActionDescription="Sort by number">
         <ng-container matColumnDef="position" *ngFor="let disCol of tableColumns let colIndex = index;"
             matColumnDef="{{disCol.columnDef}}">
-            <td mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{ disCol.header }}
-            </td>
+            <!-- if sortable column header -->
+            <ng-container *ngIf="disCol.isSortable; else notSortable">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{disCol.header}}
+                </th>
+            </ng-container>
+            <!-- else not sortable -->
+            <ng-template #notSortable>
+                <th mat-header-cell *matHeaderCellDef>
+                    {{disCol.header}}
+                </th>
 
-            <td mat-cell *matCellDef="let element">
-                <span *ngIf="!disCol.isLink; else link">
+            </ng-template>
+
+            <td mat-cell *matCellDef="let element" [id]="rowAction" (click)="onRowClick(element)">
+                <span *ngIf="!disCol.isAction; else action">
                     {{ disCol.cell(element) }}
                 </span>
 
-                <ng-template #link>
-                    <a>
-                        {{ disCol.cell(element) }}
-                    </a>
+                <ng-template #action>
+                    <button mat-button [id]="rowActionIcon" (click)="emitRowAction(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </ng-template>
+
+
             </td>
         </ng-container>
 
@@ -66,6 +45,9 @@ styleClass="p-datatable-striped"
 
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+
+    <mat-paginator *ngIf="isPageable" 
+        [pageSizeOptions]="[10, 20, 50]" 
+        showFirstLastButtons aria-label="Select page..">
     </mat-paginator>
 </div>

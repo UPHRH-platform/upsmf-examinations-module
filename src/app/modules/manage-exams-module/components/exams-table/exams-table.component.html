@@ -3,4 +3,11 @@
 </div>
 
 
-<app-shared-table> </app-shared-table>
+<app-shared-table
+    [tableColumns]="examsTableColumns"
+    [tableData]="exams"
+    [isPageable]="true"
+    (rowAction)="removeItem($event)"
+    > 
+
+</app-shared-table>
