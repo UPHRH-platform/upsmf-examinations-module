@@ -6,7 +6,7 @@ import { ExamsTableComponent } from './components/exams-table/exams-table.compon
 import { SharedModule } from '../shared/shared.module';
 import { ExamCycleComponent } from './components/exam-cycle/exam-cycle.component';
 import { MaterialModule } from 'src/material/material.module';
-import { MatTimepickerModule } from 'mat-timepicker';
+//import { MatTimepickerModule } from 'mat-timepicker';
 
 
 
@@ -21,7 +21,7 @@ import { MatTimepickerModule } from 'mat-timepicker';
     ManageExamsModuleRoutingModule,
     SharedModule,
     MaterialModule,
-    MatTimepickerModule,
+   // MatTimepickerModule,
    
     
     

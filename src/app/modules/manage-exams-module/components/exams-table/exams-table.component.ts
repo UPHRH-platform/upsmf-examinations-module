@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 
 import { msgs } from "../../../../../locale/en";
 import { TableColumn } from '../../../shared/components/shared-table/shared-table.component';
+import { SharedDialogOverlayComponent } from '../../../shared/components/shared-dialog-overlay/shared-dialog-overlay.component';
 
 export interface Exams {
   examId: string;
@@ -23,6 +25,7 @@ export class ExamsTableComponent {
 
   exams: Exams[];
   examsTableColumns: TableColumn[];
+  constructor(public dialog: MatDialog){}
 
   ngOnInit(): void {
     this.initializeColumns();
@@ -81,7 +84,6 @@ export class ExamsTableComponent {
         description: 'M SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -89,7 +91,6 @@ export class ExamsTableComponent {
         description: 'M SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -97,7 +98,6 @@ export class ExamsTableComponent {
         description: 'M SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -105,7 +105,6 @@ export class ExamsTableComponent {
         description: 'M SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -113,14 +112,12 @@ export class ExamsTableComponent {
         description: 'M SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       }, {
         examId: "M SC ( NURSING ) - SEMESTER 2",
         description: 'M SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -128,7 +125,6 @@ export class ExamsTableComponent {
         description: 'B SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -136,7 +132,6 @@ export class ExamsTableComponent {
         description: 'B SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -144,7 +139,6 @@ export class ExamsTableComponent {
         description: 'B SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -152,7 +146,6 @@ export class ExamsTableComponent {
         description: 'B SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       },
       {
@@ -160,7 +153,6 @@ export class ExamsTableComponent {
         description: 'B SC ( NURSING )',
         startDate: "23-06-2023",
         endDate: "23-12-2023",
-
         isActive: true
       }
     ];
@@ -169,4 +161,26 @@ export class ExamsTableComponent {
   removeItem(e: Event) {
     console.log(e)
   }
+
+
+  openBulkUploadDialog(): void {
+    const dialogRef = this.dialog.open(SharedDialogOverlayComponent, {
+      data: {
+        exams: this.exams,
+        examsTableColumns: this.examsTableColumns
+      },
+      maxWidth: '800vw',
+      maxHeight: '100vh',
+      height: '80%',
+      width: '80%',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+}
+
+
 }
