@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ExamsTableComponent } from './components/exams-table/exams-table.component';
-import { HeaderComponent } from '../shared/components/header/header.component';
 import { ExamCycleComponent } from './components/exam-cycle/exam-cycle.component';
 
 const routes: Routes = [

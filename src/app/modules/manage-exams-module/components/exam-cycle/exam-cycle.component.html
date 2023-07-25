@@ -10,14 +10,14 @@
         </div>
 
         <div class="body">
-            <form class="examcycleform">
+            <form [formGroup]="createExamCycle" class="examcycleform " (ngSubmit)="onSubmit()">
                 <div class="flex flex-column">
                     <div class="flex flex-row  " style="gap: 1.5rem">
                         <div class="flex flex-column ">
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">Exam cycle</h4>
-                            <mat-form-field appearance="outline" style="width:16.5rem">
+                            <mat-form-field appearance="outline" style="width:16.5rem" >
                                 <mat-label>Exam cycle</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="examcycle">
                                     <mat-option value="one">First option</mat-option>
                                     <mat-option value="two">Second option</mat-option>
                                 </mat-select>
@@ -27,7 +27,7 @@
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">Course name</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>Course name</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="coursename">
                                     <mat-option value="one">First option</mat-option>
                                     <mat-option value="two">Second option</mat-option>
                                 </mat-select>
@@ -39,7 +39,7 @@
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">Start date</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker">
+                                <input matInput [matDatepicker]="picker" formControlName="startdate" [min]="pickerMinDate">
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
@@ -48,7 +48,7 @@
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">End date</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker1">
+                                <input matInput [matDatepicker]="picker1" formControlName="enddate"[min]="pickerMinDate">
                                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
                             </mat-form-field>
@@ -59,71 +59,78 @@
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">Exam name</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>Exam name</mat-label>
-                                <input matInput placeholder="Exam name">
+                                <input matInput placeholder="Exam name" formControlName="examname">
                             </mat-form-field>
                         </div>
                         <div class="flex flex-column">
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">Exam date</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker3">
+                                <input matInput [matDatepicker]="picker3" formControlName="examdate" [min]="pickerMinDate">
                                 <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                                 <mat-datepicker #picker3></mat-datepicker>
                             </mat-form-field>
                         </div>
-                     <!--    <div class="flex flex-column ">
+                        <div class="flex flex-column ">
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">Start time</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>hh:mm</mat-label>
-                                <input class="custom-timepicker"style="border:none;"matTimepicker #t="matTimepicker"  [strict]="false" id="timepicker-example" mode="12h">
+                                <input class="custom-timepicker"style="border:none;"matTimepicker #t="matTimepicker"  [strict]="false" id="timepicker-example" mode="12h" formControlName="starttime">
                                 <mat-icon matSuffix (click)="t.showDialog()">access_time</mat-icon>
                             </mat-form-field>
-                        </div> -->
-                     <!--    <div class="flex flex-column">
+                        </div>
+                        <div class="flex flex-column ">
                             <h4 style="font-weight:400;margin-bottom:1rem;margin-top:2rem">End time</h4>
                             <mat-form-field appearance="outline" style="width:16.5rem">
                                 <mat-label>hh:mm</mat-label>
-                                <input class="custom-timepicker"style="border:none;"matTimepicker #t="matTimepicker"  [strict]="false" id="timepicker-example" mode="12h">
-                                <mat-icon matSuffix (click)="t.showDialog()">access_time</mat-icon>
+                                <input class="custom-timepicker"style="border:none;"matTimepicker #t1="matTimepicker"  [strict]="false" id="timepicker-example" mode="12h" formControlName="endtime" (mouseleave)="endTimeValidator()">
+                                <mat-icon matSuffix (click)="t1.showDialog()" (mouseleave)="endTimeValidator()">access_time</mat-icon>
                             </mat-form-field>
-                        </div> -->
+                            <div class="sb-color-red pt-0" style="color:red"  tabindex="0" *ngIf="createExamCycle.controls['endtime'].touched && createExamCycle.controls['endtime'].errors">Enter a valid End time</div>
+
+                        </div>
                     </div>
                     <div class="flex flex-row  " style="gap: 1.5rem">
                         <div class="flex flex-column">
-                            <button class="btn-3" style="margin-top:1rem">Add Exam</button>
+                            <button  class="btn-3 btn-primary" type="submit"style="margin-top:1rem" (click)="addExamCycle()">Add Exam</button>
                         </div>
                     </div>
-                    <div class="flex flex-row  " style="margin-top:2rem">
+                    <div class="flex flex-row  " style="gap: 1.5rem">
                         <div class="flex flex-column">
-                            <div class="card1">
-                                <div class="flex flex-row">
-                                    <div class="flex flex-column">
-                                        <h3 style="font-weight:500;text-align:start;margin-left:2rem">Exam 1</h3>
-                                        <mat-icon style="margin-left:15rem;margin-top: -48px">close</mat-icon>
+                            <mat-chip-grid #chipGrid aria-label="Exam" style="margin-top: 20px;">
+                                <mat-chip-row  *ngFor="let exam of exams" style="height: 9rem;width: 16rem;border: thin solid rgb(185, 181, 181);border-radius: 4px;background-color:#fff;"
+                                    (removed)="remove(exam)">
+                                    <h4>{{exam.examname}}</h4>
+                                    <p style="font-size: 14px;">Exam date: {{ exam.examdate | date:'dd-MM-yyyy' }}</p>
+                                    <div style="border-color:grey;background-color:#F0F3F4;height:1.5rem;border-bottom-left-radius: 8px;border-top-left-radius: 8px;border: 0.5px solid rgb(161, 159, 159);width: 12rem;">
+                                        <div class="time">Exam time: {{getFormattedTime(exam.starttime ) }} - {{getFormattedTime(exam.endtime)}}</div>
                                     </div>
-                                </div>
-                                <h5 style="font-weight:300;text-align:start;margin-left:2rem">Exam date: dd/mm/yyyy</h5>
-                                <div style="border-color:grey;background-color:#F0F3F4;margin-right: 2rem;margin-left: 2rem;height:1.5rem;border-bottom-left-radius: 8px;border-top-left-radius: 8px;border: 0.5px solid rgb(161, 159, 159)">
-                                    <div class="time">Exam time : 10AM-12PM</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-column" style="margin-left: 2rem">
-                            <div class="card1">
-                                <div class="flex flex-row">
-                                    <div class="flex flex-column">
-                                        <h3 style="font-weight:500;text-align:start;margin-left:2rem">Exam 2</h3>
-                                        <mat-icon style="margin-left:15rem;margin-top: -48px">close</mat-icon>
-                                    </div>
-                                </div>
-                                <h5 style="font-weight:300;text-align:start;margin-left:2rem">Exam date: dd/mm/yyyy</h5>
-                                <div style="border-color:grey;background-color:#F0F3F4;margin-right: 2rem;margin-left: 2rem;height:1.5rem;border-bottom-left-radius: 8px;border-top-left-radius: 8px;border: 0.5px solid rgb(161, 159, 159)">
-                                    <div class="time">Exam time : 10AM-12PM</div>
-                                </div>
-                            </div>
+                                    <button matChipRemove [attr.aria-label]="'remove ' + exam.name" style="padding-bottom: 102px;">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </mat-chip-row>
+                            </mat-chip-grid>
                         </div>
                     </div>
-
+                    
+                    
+                    
+                    <!-- <div class="flex flex-row">
+                        <mat-chip-grid #chipGrid aria-label="Exam" style="margin: 20px;">
+                            <mat-chip-row  *ngFor="let exam of exams" style="height: 9rem;width: 16rem;border: thin solid rgb(185, 181, 181);border-radius: 4px;background-color:#fff;"
+                                (removed)="remove(exam)">
+                                <h4>{{exam.examname}}</h4>
+                                <p style="font-size: 14px;">Exam date: {{ exam.examdate | date:'dd-MM-yyyy' }}</p>
+                                <div style="border-color:grey;background-color:#F0F3F4;height:1.5rem;border-bottom-left-radius: 8px;border-top-left-radius: 8px;border: 0.5px solid rgb(161, 159, 159);width: 12rem;">
+                                    <div class="time">Exam time: {{getFormattedTime(exam.starttime ) }} - {{getFormattedTime(exam.endtime)}}</div>
+                                </div>
+                                <button matChipRemove [attr.aria-label]="'remove ' + exam.name" style="padding-bottom: 102px;">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-chip-row>
+                        </mat-chip-grid>
+                    </div> -->
+                   
                 </div>
             </form>
         </div>
