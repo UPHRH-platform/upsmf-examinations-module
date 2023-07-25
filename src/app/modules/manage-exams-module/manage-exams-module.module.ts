@@ -6,7 +6,8 @@ import { ExamsTableComponent } from './components/exams-table/exams-table.compon
 import { SharedModule } from '../shared/shared.module';
 import { ExamCycleComponent } from './components/exam-cycle/exam-cycle.component';
 import { MaterialModule } from 'src/material/material.module';
-//import { MatTimepickerModule } from 'mat-timepicker';
+import { MatTimepickerModule } from 'mat-timepicker';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,10 +22,11 @@ import { MaterialModule } from 'src/material/material.module';
     ManageExamsModuleRoutingModule,
     SharedModule,
     MaterialModule,
-   // MatTimepickerModule,
-   
-    
-    
+   MatTimepickerModule,
+   ReactiveFormsModule
+  ],
+  exports:[
+    ExamsTableComponent
   ]
 })
 export class ManageExamsModuleModule { }
